@@ -78,14 +78,21 @@ reply="I am your assistant. Please talk respectfully.";
 document.getElementById("output")
 .innerText=reply;
 
-
 function startVoice(){
 
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+alert("Voice not supported in this browser");
+return;
+}
+
 const recognition =
-new webkitSpeechRecognition();
+new SpeechRecognition();
 
 recognition.lang="en-US";
-
 recognition.start();
 
 recognition.onresult=function(event){
@@ -100,8 +107,12 @@ run();
 
 };
 
+recognition.onerror=function(){
+alert("Mic permission needed");
+};
+
 }
-}
+
 
 </script>
 
