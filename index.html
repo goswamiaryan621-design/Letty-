@@ -29,7 +29,7 @@ padding:12px;
 
 <input id="command" placeholder="Talk to Ario">
 <button onclick="run()">Send</button>
-
+<button onclick="startVoice()">🎤 Speak</button>
 <p id="output"></p>
 
 <script>
@@ -72,11 +72,35 @@ reply="Current time is "
 else if(cmd.includes("date"))
 reply=new Date().toDateString();
 
+else if(cmd.includes("kyu re"))
+reply="I am your assistant. Please talk respectfully."; 
+
 document.getElementById("output")
 .innerText=reply;
 
 
+function startVoice(){
 
+const recognition =
+new webkitSpeechRecognition();
+
+recognition.lang="en-US";
+
+recognition.start();
+
+recognition.onresult=function(event){
+
+let speech =
+event.results[0][0].transcript;
+
+document.getElementById("command")
+.value=speech;
+
+run();
+
+};
+
+}
 }
 
 </script>
