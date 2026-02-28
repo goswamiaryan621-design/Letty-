@@ -34,28 +34,48 @@ padding:12px;
 
 <script>
 
+
+
 function run(){
 
 let cmd =
 document.getElementById("command")
 .value.toLowerCase();
 
-let reply="I am learning...";
+let reply="Sorry, I don't understand yet.";
 
 if(cmd.includes("hello"))
-reply="Hello Aryan 👋";
+reply="Hello Aryan 👋 I am Ario.";
 
-else if(cmd.includes("youtube"))
+else if(cmd.includes("how are you"))
+reply="I am working perfectly.";
+
+else if(cmd.includes("youtube")){
+reply="Opening YouTube";
 window.open("https://youtube.com");
+}
 
-else if(cmd.includes("google"))
+else if(cmd.includes("google")){
+reply="Opening Google";
 window.open("https://google.com");
+}
+
+else if(cmd.includes("instagram")){
+reply="Opening Instagram";
+window.open("https://instagram.com");
+}
 
 else if(cmd.includes("time"))
-reply=new Date().toLocaleTimeString();
+reply="Current time is "
++ new Date().toLocaleTimeString();
+
+else if(cmd.includes("date"))
+reply=new Date().toDateString();
 
 document.getElementById("output")
 .innerText=reply;
+
+
 
 }
 
