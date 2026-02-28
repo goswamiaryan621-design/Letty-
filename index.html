@@ -78,27 +78,18 @@ reply="I am your assistant. Please talk respectfully.";
 document.getElementById("output")
 .innerText=reply;
 
+let recognition;
 
 function startVoice(){
-
-try{
 
 const SpeechRecognition =
 window.SpeechRecognition ||
 window.webkitSpeechRecognition;
 
-const recognition =
-new SpeechRecognition();
+if(!recognition){
+recognition = new SpeechRecognition();
 
 recognition.lang="en-US";
-recognition.continuous=false;
-recognition.interimResults=false;
-
-recognition.start();
-
-recognition.onstart=function(){
-alert("Listening...");
-};
 
 recognition.onresult=function(event){
 
@@ -108,18 +99,19 @@ event.results[0][0].transcript;
 document.getElementById("command").value=speech;
 
 run();
-
 };
 
 recognition.onerror=function(e){
-alert("Voice error: "+e.error);
+alert("Mic error: "+e.error);
 };
-
-}catch(err){
-alert("Voice not supported");
 }
 
+setTimeout(()=>{
+recognition.start();
+},300);
+
 }
+
 
 </script>
 
