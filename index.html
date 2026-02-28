@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ario AI</title>
+
+<style>
+body{
+background:#0b0b0b;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+input{
+width:70%;
+padding:12px;
+}
+
+button{
+padding:12px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🤖 Ario AI Assistant</h1>
+
+<input id="command" placeholder="Talk to Ario">
+<button onclick="run()">Send</button>
+
+<p id="output"></p>
+
+<script>
+
+function run(){
+
+let cmd =
+document.getElementById("command")
+.value.toLowerCase();
+
+let reply="I am learning...";
+
+if(cmd.includes("hello"))
+reply="Hello Aryan 👋";
+
+else if(cmd.includes("youtube"))
+window.open("https://youtube.com");
+
+else if(cmd.includes("google"))
+window.open("https://google.com");
+
+else if(cmd.includes("time"))
+reply=new Date().toLocaleTimeString();
+
+document.getElementById("output")
+.innerText=reply;
+
+}
+
+</script>
+
+</body>
+</html>
