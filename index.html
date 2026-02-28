@@ -111,7 +111,62 @@ recognition.start();
 },300);
 
 }
+async function askAI(message){
 
+const response = await fetch(
+"https://openrouter.ai/api/v1/chat/completions",
+{
+method:"POST",
+headers:{
+"Authorization":"Bearer YOUR_AP",
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+model:"openai/gpt-3.5-turbo",
+messages:[
+{role:"user",content:message}
+]
+})
+});
+
+const data = await response.json();
+
+return data.choices[0].message.content;
+async function askAI(message){
+
+const response = await fetch(
+"https://openrouter.ai/api/v1/chat/completions",
+{
+method:"POST",
+headers:{
+"Authorization":"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",
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+model:"openai/gpt-3.5-turbo",
+messages:[
+{role:"user",content:message}
+]
+})
+});
+
+const data = await response.json();
+
+return data.choices[0].message.content;
+
+}
+ else{
+
+document.getElementById("output")
+.innerText="Thinking...";
+
+askAI(cmd).then(ans=>{
+document.getElementById("output")
+.innerText=ans;
+});
+
+return;
+  }
 
 </script>
 
